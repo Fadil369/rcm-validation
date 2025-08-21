@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RCM Analytics Dashboard | BrainSAIT Research</title>
+    <meta name="description" content="Real-time analytics dashboard for RCM validation survey responses by BrainSAIT Healthcare AI Research Initiative." />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/assets/dashboard.js"></script>
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <div class="logo" aria-label="BrainSAIT">🧠 BrainSAIT</div>
+        <div class="tagline">Healthcare AI Research Initiative - Analytics Dashboard</div>
+      </div>
+      <div class="header-actions">
+        <button id="refreshBtn" class="chip" title="Refresh Data">🔄 Refresh</button>
+        <button id="exportBtn" class="chip" title="Export Data">📊 Export</button>
+      </div>
+    </header>
+
+    <main class="container dashboard" role="main">
+      <!-- Summary Cards -->
+      <section class="dashboard-grid">
+        <div class="card metric-card">
+          <div class="metric-icon">📊</div>
+          <div class="metric-content">
+            <h3>Total Responses</h3>
+            <div class="metric-value" id="totalResponses">-</div>
+            <div class="metric-change">+0 today</div>
+          </div>
+        </div>
+
+        <div class="card metric-card">
+          <div class="metric-icon">⭐</div>
+          <div class="metric-content">
+            <h3>Average Score</h3>
+            <div class="metric-value" id="avgScore">-</div>
+            <div class="metric-change">out of 25</div>
+          </div>
+        </div>
+
+        <div class="card metric-card">
+          <div class="metric-icon">🎯</div>
+          <div class="metric-content">
+            <h3>High Qualified</h3>
+            <div class="metric-value" id="highQualified">-</div>
+            <div class="metric-change">critical + high</div>
+          </div>
+        </div>
+
+        <div class="card metric-card">
+          <div class="metric-icon">💰</div>
+          <div class="metric-content">
+            <h3>Avg Financial Impact</h3>
+            <div class="metric-value" id="avgFinancialImpact">-</div>
+            <div class="metric-change">SAR per month</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="dashboard-grid">
+        <div class="card chart-card">
+          <h3>🏥 Qualification Distribution</h3>
+          <canvas id="qualificationChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="card chart-card">
+          <h3>⚠️ Primary Challenges</h3>
+          <canvas id="challengeChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="card chart-card full-width">
+          <h3>📈 Monthly Trends</h3>
+          <canvas id="trendsChart" width="800" height="300"></canvas>
+        </div>
+      </section>
+
+      <!-- Insights Section -->
+      <section class="dashboard-grid">
+        <div class="card insights-card">
+          <h3>🤖 AI-Powered Insights</h3>
+          <div id="aiInsights" class="insights-content">
+            <div class="loading-state">Generating insights...</div>
+          </div>
+        </div>
+
+        <div class="card recommendations-card">
+          <h3>📋 Market Recommendations</h3>
+          <div id="marketRecommendations" class="recommendations-content">
+            <div class="loading-state">Loading recommendations...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Table -->
+      <section class="card table-card">
+        <div class="table-header">
+          <h3>📄 Recent Responses</h3>
+          <div class="table-actions">
+            <select id="filterQualification" class="filter-select">
+              <option value="">All Qualifications</option>
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+              <option value="minimal">Minimal</option>
+            </select>
+            <input type="date" id="filterDate" class="filter-input" />
+          </div>
+        </div>
+        <div class="table-container">
+          <table id="responsesTable" class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Organization</th>
+                <th>Role</th>
+                <th>Challenge</th>
+                <th>Score</th>
+                <th>Qualification</th>
+                <th>Financial Impact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="responsesTableBody">
+              <tr>
+                <td colspan="8" class="loading-state">Loading responses...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Export Modal -->
+      <div id="exportModal" class="modal" hidden>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>📊 Export Data</h3>
+            <button class="modal-close" onclick="closeExportModal()">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="export-options">
+              <label class="export-option">
+                <input type="radio" name="exportFormat" value="csv" checked />
+                <span>CSV Format</span>
+                <small>Spreadsheet-compatible data export</small>
+              </label>
+              <label class="export-option">
+                <input type="radio" name="exportFormat" value="json" />
+                <span>JSON Format</span>
+                <small>Machine-readable structured data</small>
+              </label>
+              <label class="export-option">
+                <input type="radio" name="exportFormat" value="pdf" />
+                <span>PDF Report</span>
+                <small>Formatted report with charts and insights</small>
+              </label>
+            </div>
+            <div class="date-range">
+              <label>
+                <span>From Date:</span>
+                <input type="date" id="exportFromDate" />
+              </label>
+              <label>
+                <span>To Date:</span>
+                <input type="date" id="exportToDate" />
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn secondary" onclick="closeExportModal()">Cancel</button>
+            <button class="btn primary" onclick="performExport()">Export Data</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div>© <span id="year"></span> BrainSAIT Research • Saudi Arabia • Analytics Dashboard v2.0</div>
+    </footer>
+  </body>
+</html>

@@ -1,210 +1,217 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RCM Validation Survey | BrainSAIT Research</title>
-    <meta name="description" content="Revenue Cycle Management (RCM) validation survey and outreach toolkit by BrainSAIT for healthcare professionals in Saudi Arabia." />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/styles.css" />
-    <script defer src="/config.js"></script>
-    <script defer src="/assets/app.js"></script>
-  </head>
-  <body>
-    <header class="site-header" role="banner">
-      <div class="brand">
-        <div class="logo" aria-label="BrainSAIT">🧠 BrainSAIT</div>
-        <div class="tagline">Healthcare AI Research Initiative</div>
-      </div>
-      <div class="header-actions">
-        <button id="langToggle" class="chip" title="Toggle direction" aria-pressed="false">LTR</button>
-      </div>
-    </header>
 
-    <main class="container" role="main">
-      <section class="card survey" aria-labelledby="survey-title">
-        <div class="accent"></div>
-        <h1 id="survey-title" class="visually-hidden">RCM Validation Survey</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RCM Validation Survey | BrainSAIT Research</title>
+  <meta name="description"
+    content="Revenue Cycle Management (RCM) validation survey and outreach toolkit by BrainSAIT for healthcare professionals in Saudi Arabia." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <script defer src="/config.js"></script>
+  <script defer src="/assets/app.js"></script>
+</head>
 
-        <div class="progress" aria-label="Survey progress" aria-live="polite">
-          <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width: 0%"></div></div>
-          <div class="progress-text"><span id="progressText">Step 1 of 6</span></div>
+<body>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <div class="logo" aria-label="BrainSAIT">🧠 BrainSAIT</div>
+      <div class="tagline">Healthcare AI Research Initiative</div>
+    </div>
+    <div class="header-actions">
+      <button id="langToggle" class="chip" title="Toggle direction" aria-pressed="false">LTR</button>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="card survey" aria-labelledby="survey-title">
+      <div class="accent"></div>
+      <h1 id="survey-title" class="visually-hidden">RCM Validation Survey</h1>
+
+      <div class="progress" aria-label="Survey progress" aria-live="polite">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressBar" style="width: 0%"></div>
         </div>
+        <div class="progress-text"><span id="progressText">Step 1 of 6</span></div>
+      </div>
 
-        <form id="surveyForm" novalidate>
-          <!-- Q1 -->
-          <fieldset class="question active" data-question="1" aria-describedby="q1-help">
-            <legend class="question-title">What best describes your role in healthcare revenue cycle management?</legend>
-            <p id="q1-help" class="question-subtitle">We're researching RCM challenges to develop better solutions.</p>
-            <div class="options-grid">
-              <button type="button" class="option" data-value="rcm-director" data-qualify="high">
-                <span class="option-title">RCM Director/Manager</span>
-                <span class="option-desc">Direct responsibility for revenue cycle operations</span>
-              </button>
-              <button type="button" class="option" data-value="practice-admin" data-qualify="high">
-                <span class="option-title">Practice Administrator</span>
-                <span class="option-desc">Oversee clinic operations including billing</span>
-              </button>
-              <button type="button" class="option" data-value="billing-manager" data-qualify="medium">
-                <span class="option-title">Billing Manager/Supervisor</span>
-                <span class="option-desc">Manage billing team and processes</span>
-              </button>
-              <button type="button" class="option" data-value="other-healthcare" data-qualify="low">
-                <span class="option-title">Other Healthcare Professional</span>
-                <span class="option-desc">Involved in healthcare but not directly in RCM</span>
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- Q2 -->
-          <fieldset class="question" data-question="2">
-            <legend class="question-title">How many healthcare providers does your organization have?</legend>
-            <p class="question-subtitle">This helps us understand the scale of your RCM challenges.</p>
-            <div class="options-grid">
-              <button type="button" class="option" data-value="large" data-qualify="high">
-                <span class="option-title">100+ Providers</span>
-                <span class="option-desc">Large health system or multi-specialty group</span>
-              </button>
-              <button type="button" class="option" data-value="medium" data-qualify="high">
-                <span class="option-title">20–100 Providers</span>
-                <span class="option-desc">Mid-size practice or hospital</span>
-              </button>
-              <button type="button" class="option" data-value="small" data-qualify="medium">
-                <span class="option-title">5–20 Providers</span>
-                <span class="option-desc">Small to medium practice</span>
-              </button>
-              <button type="button" class="option" data-value="very-small" data-qualify="low">
-                <span class="option-title">Less than 5 Providers</span>
-                <span class="option-desc">Small practice or solo practitioner</span>
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- Q3 -->
-          <fieldset class="question" data-question="3">
-            <legend class="question-title">What's your biggest RCM challenge right now?</legend>
-            <p class="question-subtitle">Select the challenge that impacts your organization most.</p>
-            <div class="options-grid">
-              <button type="button" class="option" data-value="staffing" data-qualify="high">
-                <span class="option-title">Staffing Shortages</span>
-                <span class="option-desc">Can't find or retain qualified RCM staff</span>
-              </button>
-              <button type="button" class="option" data-value="denials" data-qualify="high">
-                <span class="option-title">High Denial Rates</span>
-                <span class="option-desc">Too many claims denied or rejected</span>
-              </button>
-              <button type="button" class="option" data-value="manual-work" data-qualify="high">
-                <span class="option-title">Manual Processes</span>
-                <span class="option-desc">Too much manual data entry and follow-up</span>
-              </button>
-              <button type="button" class="option" data-value="cash-flow" data-qualify="medium">
-                <span class="option-title">Cash Flow Issues</span>
-                <span class="option-desc">Slow collections and payment delays</span>
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- Q4: SAR ranges -->
-          <fieldset class="question" data-question="4">
-            <legend class="question-title">Estimated monthly revenue lost due to RCM inefficiencies (SAR)</legend>
-            <p class="question-subtitle">Include denied claims, delayed payments, and staffing costs.</p>
-            <div class="options-grid">
-              <button type="button" class="option" data-value="high-impact" data-qualify="high" data-sar="250000">
-                <span class="option-title">SAR 250,000+</span>
-                <span class="option-desc">Significant financial impact</span>
-              </button>
-              <button type="button" class="option" data-value="medium-impact" data-qualify="high" data-sar="100000">
-                <span class="option-title">SAR 100,000 – 250,000</span>
-                <span class="option-desc">Moderate but concerning impact</span>
-              </button>
-              <button type="button" class="option" data-value="low-impact" data-qualify="medium" data-sar="25000">
-                <span class="option-title">SAR 25,000 – 100,000</span>
-                <span class="option-desc">Noticeable impact</span>
-              </button>
-              <button type="button" class="option" data-value="minimal" data-qualify="low" data-sar="5000">
-                <span class="option-title">Less than SAR 25,000</span>
-                <span class="option-desc">Minimal financial impact</span>
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- Q5 -->
-          <fieldset class="question" data-question="5">
-            <legend class="question-title">How open is your organization to adopting AI automation for RCM?</legend>
-            <p class="question-subtitle">This helps us understand readiness for new solutions.</p>
-            <div class="options-grid">
-              <button type="button" class="option" data-value="very-open" data-qualify="high">
-                <span class="option-title">Very Open</span>
-                <span class="option-desc">Actively seeking AI/automation solutions</span>
-              </button>
-              <button type="button" class="option" data-value="open" data-qualify="high">
-                <span class="option-title">Open</span>
-                <span class="option-desc">Would consider proven AI solutions</span>
-              </button>
-              <button type="button" class="option" data-value="cautious" data-qualify="medium">
-                <span class="option-title">Cautious</span>
-                <span class="option-desc">Need to see strong evidence first</span>
-              </button>
-              <button type="button" class="option" data-value="resistant" data-qualify="low">
-                <span class="option-title">Resistant</span>
-                <span class="option-desc">Prefer traditional approaches</span>
-              </button>
-            </div>
-          </fieldset>
-
-          <!-- Q6 Contact -->
-          <fieldset class="question" data-question="6">
-            <legend class="question-title">Let's connect to discuss your RCM challenges</legend>
-            <p class="question-subtitle">We'd love to learn more about your specific situation and share relevant insights.</p>
-            <div class="form-grid">
-              <label class="field">
-                <span>Full Name *</span>
-                <input id="fullName" name="fullName" class="input" type="text" autocomplete="name" required />
-              </label>
-              <label class="field">
-                <span>Work Email *</span>
-                <input id="email" name="email" class="input" type="email" autocomplete="email" required />
-              </label>
-              <label class="field">
-                <span>Organization *</span>
-                <input id="organization" name="organization" class="input" type="text" required />
-              </label>
-              <label class="field">
-                <span>Phone (KSA)</span>
-                <input id="phone" name="phone" class="input" type="tel" inputmode="tel" placeholder="05XXXXXXXX or +9665XXXXXXX" />
-              </label>
-              <label class="field full">
-                <span>Location (City, Region)</span>
-                <input id="location" name="location" class="input" type="text" />
-              </label>
-            </div>
-          </fieldset>
-
-          <div class="nav">
-            <button type="button" class="btn secondary" id="prevBtn" disabled>← Previous</button>
-            <button type="button" class="btn primary" id="nextBtn" disabled>Next →</button>
+      <form id="surveyForm" novalidate>
+        <!-- Q1 -->
+        <fieldset class="question active" data-question="1" aria-describedby="q1-help">
+          <legend class="question-title">What best describes your role in healthcare revenue cycle management?</legend>
+          <p id="q1-help" class="question-subtitle">We're researching RCM challenges to develop better solutions.</p>
+          <div class="options-grid">
+            <button type="button" class="option" data-value="rcm-director" data-qualify="high">
+              <span class="option-title">RCM Director/Manager</span>
+              <span class="option-desc">Direct responsibility for revenue cycle operations</span>
+            </button>
+            <button type="button" class="option" data-value="practice-admin" data-qualify="high">
+              <span class="option-title">Practice Administrator</span>
+              <span class="option-desc">Oversee clinic operations including billing</span>
+            </button>
+            <button type="button" class="option" data-value="billing-manager" data-qualify="medium">
+              <span class="option-title">Billing Manager/Supervisor</span>
+              <span class="option-desc">Manage billing team and processes</span>
+            </button>
+            <button type="button" class="option" data-value="other-healthcare" data-qualify="low">
+              <span class="option-title">Other Healthcare Professional</span>
+              <span class="option-desc">Involved in healthcare but not directly in RCM</span>
+            </button>
           </div>
-        </form>
+        </fieldset>
 
-        <section class="results" id="resultsSection" hidden>
-          <div id="qualificationBadge" class="badge">Thank you</div>
-          <p id="qualificationText" class="muted"></p>
-          <div class="cta">
-            <a id="bookLink" href="#" class="btn primary" target="_blank" rel="noopener">📅 Book a 15‑Minute Chat</a>
-            <button id="submitBtn" class="btn secondary">📧 Send My Responses</button>
+        <!-- Q2 -->
+        <fieldset class="question" data-question="2">
+          <legend class="question-title">How many healthcare providers does your organization have?</legend>
+          <p class="question-subtitle">This helps us understand the scale of your RCM challenges.</p>
+          <div class="options-grid">
+            <button type="button" class="option" data-value="large" data-qualify="high">
+              <span class="option-title">100+ Providers</span>
+              <span class="option-desc">Large health system or multi-specialty group</span>
+            </button>
+            <button type="button" class="option" data-value="medium" data-qualify="high">
+              <span class="option-title">20–100 Providers</span>
+              <span class="option-desc">Mid-size practice or hospital</span>
+            </button>
+            <button type="button" class="option" data-value="small" data-qualify="medium">
+              <span class="option-title">5–20 Providers</span>
+              <span class="option-desc">Small to medium practice</span>
+            </button>
+            <button type="button" class="option" data-value="very-small" data-qualify="low">
+              <span class="option-title">Less than 5 Providers</span>
+              <span class="option-desc">Small practice or solo practitioner</span>
+            </button>
           </div>
-          <p id="submitNote" class="muted small"></p>
-        </section>
+        </fieldset>
+
+        <!-- Q3 -->
+        <fieldset class="question" data-question="3">
+          <legend class="question-title">What's your biggest RCM challenge right now?</legend>
+          <p class="question-subtitle">Select the challenge that impacts your organization most.</p>
+          <div class="options-grid">
+            <button type="button" class="option" data-value="staffing" data-qualify="high">
+              <span class="option-title">Staffing Shortages</span>
+              <span class="option-desc">Can't find or retain qualified RCM staff</span>
+            </button>
+            <button type="button" class="option" data-value="denials" data-qualify="high">
+              <span class="option-title">High Denial Rates</span>
+              <span class="option-desc">Too many claims denied or rejected</span>
+            </button>
+            <button type="button" class="option" data-value="manual-work" data-qualify="high">
+              <span class="option-title">Manual Processes</span>
+              <span class="option-desc">Too much manual data entry and follow-up</span>
+            </button>
+            <button type="button" class="option" data-value="cash-flow" data-qualify="medium">
+              <span class="option-title">Cash Flow Issues</span>
+              <span class="option-desc">Slow collections and payment delays</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- Q4: SAR ranges -->
+        <fieldset class="question" data-question="4">
+          <legend class="question-title">Estimated monthly revenue lost due to RCM inefficiencies (SAR)</legend>
+          <p class="question-subtitle">Include denied claims, delayed payments, and staffing costs.</p>
+          <div class="options-grid">
+            <button type="button" class="option" data-value="high-impact" data-qualify="high" data-sar="250000">
+              <span class="option-title">SAR 250,000+</span>
+              <span class="option-desc">Significant financial impact</span>
+            </button>
+            <button type="button" class="option" data-value="medium-impact" data-qualify="high" data-sar="100000">
+              <span class="option-title">SAR 100,000 – 250,000</span>
+              <span class="option-desc">Moderate but concerning impact</span>
+            </button>
+            <button type="button" class="option" data-value="low-impact" data-qualify="medium" data-sar="25000">
+              <span class="option-title">SAR 25,000 – 100,000</span>
+              <span class="option-desc">Noticeable impact</span>
+            </button>
+            <button type="button" class="option" data-value="minimal" data-qualify="low" data-sar="5000">
+              <span class="option-title">Less than SAR 25,000</span>
+              <span class="option-desc">Minimal financial impact</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- Q5 -->
+        <fieldset class="question" data-question="5">
+          <legend class="question-title">How open is your organization to adopting AI automation for RCM?</legend>
+          <p class="question-subtitle">This helps us understand readiness for new solutions.</p>
+          <div class="options-grid">
+            <button type="button" class="option" data-value="very-open" data-qualify="high">
+              <span class="option-title">Very Open</span>
+              <span class="option-desc">Actively seeking AI/automation solutions</span>
+            </button>
+            <button type="button" class="option" data-value="open" data-qualify="high">
+              <span class="option-title">Open</span>
+              <span class="option-desc">Would consider proven AI solutions</span>
+            </button>
+            <button type="button" class="option" data-value="cautious" data-qualify="medium">
+              <span class="option-title">Cautious</span>
+              <span class="option-desc">Need to see strong evidence first</span>
+            </button>
+            <button type="button" class="option" data-value="resistant" data-qualify="low">
+              <span class="option-title">Resistant</span>
+              <span class="option-desc">Prefer traditional approaches</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- Q6 Contact -->
+        <fieldset class="question" data-question="6">
+          <legend class="question-title">Let's connect to discuss your RCM challenges</legend>
+          <p class="question-subtitle">We'd love to learn more about your specific situation and share relevant
+            insights.</p>
+          <div class="form-grid">
+            <label class="field">
+              <span>Full Name *</span>
+              <input id="fullName" name="fullName" class="input" type="text" autocomplete="name" required />
+            </label>
+            <label class="field">
+              <span>Work Email *</span>
+              <input id="email" name="email" class="input" type="email" autocomplete="email" required />
+            </label>
+            <label class="field">
+              <span>Organization *</span>
+              <input id="organization" name="organization" class="input" type="text" required />
+            </label>
+            <label class="field">
+              <span>Phone (KSA)</span>
+              <input id="phone" name="phone" class="input" type="tel" inputmode="tel"
+                placeholder="05XXXXXXXX or +9665XXXXXXX" />
+            </label>
+            <label class="field full">
+              <span>Location (City, Region)</span>
+              <input id="location" name="location" class="input" type="text" />
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="nav">
+          <button type="button" class="btn secondary" id="prevBtn" disabled>← Previous</button>
+          <button type="button" class="btn primary" id="nextBtn" disabled>Next →</button>
+        </div>
+      </form>
+
+      <section class="results" id="resultsSection" hidden>
+        <div id="qualificationBadge" class="badge">Thank you</div>
+        <p id="qualificationText" class="muted"></p>
+        <div class="cta">
+          <a id="bookLink" href="#" class="btn primary" target="_blank" rel="noopener">📅 Book a 15‑Minute Chat</a>
+          <button id="submitBtn" class="btn secondary">📧 Send My Responses</button>
+        </div>
+        <p id="submitNote" class="muted small"></p>
       </section>
+    </section>
 
-      <section class="card outreach" aria-labelledby="outreach-title">
-        <div class="accent"></div>
-        <h2 id="outreach-title">📧 Outreach Scripts</h2>
+    <section class="card outreach" aria-labelledby="outreach-title">
+      <div class="accent"></div>
+      <h2 id="outreach-title">📧 Outreach Scripts</h2>
 
-        <article class="script">
-          <h3>LinkedIn Message</h3>
-          <pre id="linkedin-script" class="script-box">Hi [Name],
+      <article class="script">
+        <h3>LinkedIn Message</h3>
+        <pre id="linkedin-script" class="script-box">Hi [Name],
 
 I saw your profile and noticed you work in healthcare revenue cycle management at [Company] in KSA.
 
@@ -219,12 +226,12 @@ No sales pitch – just research to understand real challenges. Happy to share i
 Best regards,
 Dr. Mohamed El Fadil Abuagla
 BrainSAIT Healthcare AI Research</pre>
-          <button class="chip" data-copy="linkedin-script">Copy</button>
-        </article>
+        <button class="chip" data-copy="linkedin-script">Copy</button>
+      </article>
 
-        <article class="script">
-          <h3>Email Outreach</h3>
-          <pre id="email-script" class="script-box">Subject: Quick RCM Research – Your Expert Perspective (KSA)
+      <article class="script">
+        <h3>Email Outreach</h3>
+        <pre id="email-script" class="script-box">Subject: Quick RCM Research – Your Expert Perspective (KSA)
 
 Hi [Name],
 
@@ -244,12 +251,12 @@ Best regards,
 Dr. Mohamed El Fadil Abuagla
 Founder, BrainSAIT – Healthcare AI Research Initiative
 dr.mf.12298@gmail.com</pre>
-          <button class="chip" data-copy="email-script">Copy</button>
-        </article>
+        <button class="chip" data-copy="email-script">Copy</button>
+      </article>
 
-        <article class="script">
-          <h3>Follow‑up Email</h3>
-          <pre id="followup-script" class="script-box">Subject: Re: RCM Research – Thank you
+      <article class="script">
+        <h3>Follow‑up Email</h3>
+        <pre id="followup-script" class="script-box">Subject: Re: RCM Research – Thank you
 
 Hi [Name],
 
@@ -264,13 +271,14 @@ Would you be open to a brief 15‑minute conversation? I can share preliminary i
 Warm regards,
 Dr. Mohamed El Fadil Abuagla
 BrainSAIT Healthcare AI Research</pre>
-          <button class="chip" data-copy="followup-script">Copy</button>
-        </article>
-      </section>
-    </main>
+        <button class="chip" data-copy="followup-script">Copy</button>
+      </article>
+    </section>
+  </main>
 
-    <footer class="site-footer" role="contentinfo">
-      <div>© <span id="year"></span> BrainSAIT Research • Saudi Arabia</div>
-    </footer>
-  </body>
+  <footer class="site-footer" role="contentinfo">
+    <div>© <span id="year"></span> BrainSAIT Research • Saudi Arabia</div>
+  </footer>
+</body>
+
 </html>

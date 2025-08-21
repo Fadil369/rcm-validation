@@ -1,2 +1,15 @@
-# Keep SPA routes working
-/*    /index.html   200
+# Redirects for Cloudflare Pages
+# BrainSAIT RCM Validation System
+
+# API routes to Cloudflare Workers
+/api/*  https://rcm-validation-api.brainsait.workers.dev/:splat  200
+
+# Dashboard routing
+/dashboard  /dashboard.html  200
+/analytics  /dashboard.html  200
+
+# Main application
+/  /index.html  200
+
+# Fallback for SPA behavior
+/*  /index.html  404
