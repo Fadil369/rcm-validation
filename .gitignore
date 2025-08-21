@@ -49,3 +49,14 @@ build/
 # Configuration overrides
 config.local.js
 backup-*/
+upstream-rcm-validation/
+_headers
+_redirects
+assets/
+app.js
+config.js
+dashboard.html
+index.html
+index.html.backup
+rcm-validation.html
+styles.css
