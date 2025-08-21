@@ -48,3 +48,4 @@ build/
 
 # Configuration overrides
 config.local.js
+backup-*/

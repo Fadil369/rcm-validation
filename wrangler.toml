@@ -3,26 +3,27 @@ main = "src/worker.js"
 compatibility_date = "2024-08-01"
 compatibility_flags = ["nodejs_compat"]
 
-[env.production]
-route = { pattern = "api.rcm-validation.brainsait.io/*", zone_name = "brainsait.io" }
+# Allow workers.dev by default; use env routes on production when zone is ready
+workers_dev = true
 
-[env.staging]
-route = { pattern = "api-staging.rcm-validation.brainsait.io/*", zone_name = "brainsait.io" }
+#############################
+# Bindings (shared)
+#############################
 
 # Workers AI binding
 [ai]
 binding = "AI"
 
-# KV Namespaces for data storage
+# KV Namespaces for data storage (fill IDs after creating resources)
 [[kv_namespaces]]
 binding = "SURVEY_RESPONSES"
-id = "survey_responses_kv"
-preview_id = "survey_responses_preview"
+id = "TODO_FILL_SURVEY_RESPONSES_ID"
+preview_id = "TODO_FILL_SURVEY_RESPONSES_PREVIEW_ID"
 
 [[kv_namespaces]]
 binding = "ANALYTICS_CACHE"
-id = "analytics_cache_kv"
-preview_id = "analytics_cache_preview"
+id = "TODO_FILL_ANALYTICS_CACHE_ID"
+preview_id = "TODO_FILL_ANALYTICS_CACHE_PREVIEW_ID"
 
 # R2 Bucket for file storage
 [[r2_buckets]]
@@ -34,18 +35,33 @@ preview_bucket_name = "rcm-survey-files-preview"
 [[d1_databases]]
 binding = "SURVEY_DB"
 database_name = "rcm_survey_db"
-database_id = "survey-db-id"
+database_id = "TODO_FILL_SURVEY_DB_ID"
 
-# Environment variables
+# Default environment variables (overridden per env below)
 [vars]
-ENVIRONMENT = "production"
-API_VERSION = "2.0"
+ENVIRONMENT = "development"
 MAX_DAILY_SUBMISSIONS = "100"
 RATE_LIMIT_WINDOW = "3600"
 ENABLE_AI_ANALYSIS = "true"
 ENABLE_AUDIT_LOGGING = "true"
 
-# Secrets (to be set via wrangler secret put)
-# OPENAI_API_KEY = "sk-..."
-# WEBHOOK_SECRET = "webhook-secret"
-# ENCRYPTION_KEY = "encryption-key"
+# Observability
+[observability]
+enabled = true
+
+# Environment-specific overrides and routes
+[env.production]
+vars = { ENVIRONMENT = "production" }
+route = { pattern = "api.rcm-validation.brainsait.io/*", zone_name = "brainsait.io" }
+
+[env.staging]
+vars = { ENVIRONMENT = "staging" }
+route = { pattern = "api-staging.rcm-validation.brainsait.io/*", zone_name = "brainsait.io" }
+
+# Optional: Uncomment if using Pages local dev with functions
+# pages_build_output_dir = "public"
+
+# Secrets (set via `wrangler secret put` in each env)
+# OPENAI_API_KEY
+# WEBHOOK_SECRET
+# ENCRYPTION_KEY

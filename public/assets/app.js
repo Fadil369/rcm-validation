@@ -117,11 +117,9 @@
     submitBtn.addEventListener('click', submitSurvey);
   }
 
-  const originalSubmitSurvey = submitSurvey;
-  // Overwrite submitSurvey to post richer payload
   function submitSurvey() {
     const name = answers.contact?.name || 'Anonymous';
-    const bodyText = [
+    const body = [
       `RCM Survey Response from ${name}`,
       `Organization: ${answers.contact?.organization || ''}`,
       `Email: ${answers.contact?.email || ''}`,
@@ -138,47 +136,16 @@
       `Generated on: ${new Date().toLocaleString('en-SA')}`
     ].join('\n');
 
-    // Derive qualification level and recommendations
-    const qualificationLevel = score >= 15 ? 'critical' : score >= 12 ? 'high' : score >= 8 ? 'medium' : score >= 5 ? 'low' : 'minimal';
-    const aiRecommendations = [
-      'Automate denial prediction and prevention for KSA insurers',
-      'Implement NPHIES-compliant claim workflows',
-      'Adopt AI triage for manual tasks and work queues'
-    ];
-
-    // Map to API schema-like structure
-    const payload = {
-      answers: {
-        q1: answers.q1 ? { value: answers.q1.value, text: answers.q1.text, aiScore: answers.q1.delta || 0 } : undefined,
-        q2: answers.q2 ? { value: answers.q2.value, text: answers.q2.text, aiScore: answers.q2.delta || 0 } : undefined,
-        q3: answers.q3 ? { value: answers.q3.value, text: answers.q3.text, aiScore: answers.q3.delta || 0 } : undefined,
-        q4: answers.q4 ? { value: answers.q4.value, text: answers.q4.text, sar: answers.q4.sar, aiScore: answers.q4.delta || 0 } : undefined,
-        q5: answers.q5 ? { value: answers.q5.value, text: answers.q5.text, aiScore: answers.q5.delta || 0 } : undefined,
-        contact: {
-          name: answers.contact?.name || '',
-          email: answers.contact?.email || '',
-          organization: answers.contact?.organization || '',
-          phone: answers.contact?.phone || '',
-          location: answers.contact?.location || '',
-          jobTitle: qs('#jobTitle')?.value || ''
-        }
-      },
-      score,
-      aiRecommendations,
-      qualificationLevel,
-      timestamp: new Date().toISOString(),
-      version: '2.0'
-    };
-
+    // Send to our API
     fetch('/api/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ answers, score })
     }).catch(() => {/* non-blocking */});
 
-    const mailto = `mailto:${(window.APP_CONFIG?.SUBMIT_EMAIL)||'dr.mf.12298@gmail.com'}?subject=RCM Survey Response - ${encodeURIComponent(name)}&body=${encodeURIComponent(bodyText)}`;
+    const mailto = `mailto:${(window.APP_CONFIG?.SUBMIT_EMAIL)||'dr.mf.12298@gmail.com'}?subject=RCM Survey Response - ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
-    qs('#submitNote').textContent = 'We opened your email client with your responses. We also stored your answers securely.';
+    qs('#submitNote').textContent = 'We opened your email client with your responses. You can also just close it — we stored your answers.';
   }
 
   function wire() {
