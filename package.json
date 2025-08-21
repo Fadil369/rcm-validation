@@ -1,0 +1,46 @@
+{
+  "name": "rcm-validation-system",
+  "version": "2.0.0",
+  "description": "BrainSAIT RCM Validation and Outreach System with AI-powered analysis",
+  "type": "module",
+  "main": "src/worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler publish",
+    "deploy:staging": "wrangler publish --env staging",
+    "deploy:production": "wrangler publish --env production",
+    "db:init": "wrangler d1 execute SURVEY_DB --file=./schema.sql",
+    "db:migrate": "wrangler d1 migrations apply SURVEY_DB",
+    "tail": "wrangler tail",
+    "kv:list": "wrangler kv:namespace list",
+    "test": "vitest",
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241011.0",
+    "wrangler": "^3.78.12",
+    "vitest": "^1.6.0",
+    "prettier": "^3.3.3",
+    "eslint": "^8.57.1"
+  },
+  "dependencies": {
+    "@cloudflare/ai": "^1.0.59",
+    "itty-router": "^5.0.17",
+    "zod": "^3.23.8"
+  },
+  "keywords": [
+    "healthcare",
+    "revenue-cycle-management",
+    "saudi-arabia",
+    "ai-powered",
+    "cloudflare-workers",
+    "brainsait"
+  ],
+  "author": "Dr. Mohamed El Fadil Abuagla <dr.mf.12298@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fadil369/rcm-validation.git"
+  }
+}
