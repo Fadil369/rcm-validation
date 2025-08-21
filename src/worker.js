@@ -8,6 +8,7 @@
 
 import { Router } from 'itty-router';
 import { z } from 'zod';
+import { Ai } from '@cloudflare/ai';
 
 // Initialize router
 const router = Router();

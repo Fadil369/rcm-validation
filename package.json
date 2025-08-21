@@ -19,14 +19,16 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241011.0",
-    "wrangler": "^3.78.12",
-    "vitest": "^1.6.0",
+    "eslint": "^8.57.1",
     "prettier": "^3.3.3",
-    "eslint": "^8.57.1"
+    "vitest": "^3.2.4",
+    "wrangler": "^4.32.0"
   },
   "dependencies": {
     "@cloudflare/ai": "^1.0.59",
+    "base64-js": "^1.5.1",
     "itty-router": "^5.0.17",
+    "mustache": "^4.2.0",
     "zod": "^3.23.8"
   },
   "keywords": [
