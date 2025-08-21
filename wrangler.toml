@@ -1,0 +1,47 @@
+name = "rcm-validation-api"
+main = "src/worker.js"
+compatibility_date = "2024-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+route = { pattern = "api.rcm-validation.brainsait.com/*", zone_name = "brainsait.com" }
+
+[env.staging]
+route = { pattern = "api-staging.rcm-validation.brainsait.com/*", zone_name = "brainsait.com" }
+
+# KV Namespaces for data storage
+[[kv_namespaces]]
+binding = "SURVEY_RESPONSES"
+id = "survey_responses_kv"
+preview_id = "survey_responses_preview"
+
+[[kv_namespaces]]
+binding = "ANALYTICS_CACHE"
+id = "analytics_cache_kv"
+preview_id = "analytics_cache_preview"
+
+# R2 Bucket for file storage
+[[r2_buckets]]
+binding = "SURVEY_FILES"
+bucket_name = "rcm-survey-files"
+preview_bucket_name = "rcm-survey-files-preview"
+
+# D1 Database for structured data
+[[d1_databases]]
+binding = "SURVEY_DB"
+database_name = "rcm_survey_db"
+database_id = "survey-db-id"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "2.0"
+MAX_DAILY_SUBMISSIONS = "100"
+RATE_LIMIT_WINDOW = "3600"
+ENABLE_AI_ANALYSIS = "true"
+ENABLE_AUDIT_LOGGING = "true"
+
+# Secrets (to be set via wrangler secret put)
+# OPENAI_API_KEY = "sk-..."
+# WEBHOOK_SECRET = "webhook-secret"
+# ENCRYPTION_KEY = "encryption-key"
