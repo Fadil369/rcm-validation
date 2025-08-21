@@ -12,25 +12,25 @@ route = { pattern = "api-staging.rcm-validation.brainsait.com/*", zone_name = "b
 # KV Namespaces for data storage
 [[kv_namespaces]]
 binding = "SURVEY_RESPONSES"
-id = "survey_responses_kv"
+id = "e06355a55a2344aa9e625ad38e8c56ca"
 preview_id = "survey_responses_preview"
 
 [[kv_namespaces]]
 binding = "ANALYTICS_CACHE"
-id = "analytics_cache_kv"
+id = "3cc32643220d42f4a75224d391bb5b3f"
 preview_id = "analytics_cache_preview"
 
-# R2 Bucket for file storage
-[[r2_buckets]]
-binding = "SURVEY_FILES"
-bucket_name = "rcm-survey-files"
-preview_bucket_name = "rcm-survey-files-preview"
+# R2 Bucket for file storage (commented out - enable when R2 is available)
+# [[r2_buckets]]
+# binding = "SURVEY_FILES"
+# bucket_name = "rcm-survey-files"
+# preview_bucket_name = "rcm-survey-files-preview"
 
 # D1 Database for structured data
 [[d1_databases]]
 binding = "SURVEY_DB"
-database_name = "rcm_survey_db"
-database_id = "survey-db-id"
+database_name = "givc_healthcare_db"
+database_id = "f961d236-d309-4e77-a0ae-a4b941293d20"
 
 # Environment variables
 [vars]
