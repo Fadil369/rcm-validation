@@ -33,150 +33,194 @@
         </div>
 
         <form id="surveyForm" novalidate>
-          <!-- Q1 -->
+          <!-- Q1 - Enhanced for Saudi Healthcare Context -->
           <fieldset class="question active" data-question="1" aria-describedby="q1-help">
-            <legend class="question-title">What best describes your role in healthcare revenue cycle management?</legend>
-            <p id="q1-help" class="question-subtitle">We're researching RCM challenges to develop better solutions.</p>
+            <legend class="question-title">ما هو دورك في إدارة دورة الإيرادات الصحية؟ | What's your role in healthcare revenue cycle management?</legend>
+            <p id="q1-help" class="question-subtitle">نحن نبحث في تحديات إدارة الإيرادات لتطوير حلول أفضل للقطاع الصحي السعودي | We're researching RCM challenges to develop better solutions for Saudi healthcare.</p>
             <div class="options-grid">
               <button type="button" class="option" data-value="rcm-director" data-qualify="high">
-                <span class="option-title">RCM Director/Manager</span>
-                <span class="option-desc">Direct responsibility for revenue cycle operations</span>
+                <span class="option-title">مدير/مديرة الإيرادات | RCM Director/Manager</span>
+                <span class="option-desc">مسؤول مباشر عن عمليات دورة الإيرادات | Direct responsibility for revenue cycle operations</span>
               </button>
               <button type="button" class="option" data-value="practice-admin" data-qualify="high">
-                <span class="option-title">Practice Administrator</span>
-                <span class="option-desc">Oversee clinic operations including billing</span>
+                <span class="option-title">مدير/ة العيادة | Practice Administrator</span>
+                <span class="option-desc">إشراف على عمليات العيادة والفوترة | Oversee clinic operations including billing</span>
               </button>
-              <button type="button" class="option" data-value="billing-manager" data-qualify="medium">
-                <span class="option-title">Billing Manager/Supervisor</span>
-                <span class="option-desc">Manage billing team and processes</span>
+              <button type="button" class="option" data-value="billing-manager" data-qualify="high">
+                <span class="option-title">مدير/ة الفوترة | Billing Manager/Supervisor</span>
+                <span class="option-desc">إدارة فريق وعمليات الفوترة | Manage billing team and processes</span>
+              </button>
+              <button type="button" class="option" data-value="it-manager" data-qualify="medium">
+                <span class="option-title">مدير/ة تقنية المعلومات | IT Manager</span>
+                <span class="option-desc">إدارة الأنظمة التقنية الصحية | Managing healthcare IT systems</span>
+              </button>
+              <button type="button" class="option" data-value="clinical-supervisor" data-qualify="medium">
+                <span class="option-title">مشرف/ة إكلينيكي | Clinical Supervisor</span>
+                <span class="option-desc">إشراف على الفرق الطبية والتوثيق | Supervising medical teams and documentation</span>
+              </button>
+              <button type="button" class="option" data-value="quality-manager" data-qualify="medium">
+                <span class="option-title">مدير/ة الجودة | Quality Manager</span>
+                <span class="option-desc">ضمان الجودة والامتثال للمعايير | Quality assurance and compliance</span>
+              </button>
+              <button type="button" class="option" data-value="finance-controller" data-qualify="high">
+                <span class="option-title">مراقب/ة مالي | Finance Controller</span>
+                <span class="option-desc">مراقبة الأداء المالي والتدفق النقدي | Financial performance and cash flow monitoring</span>
               </button>
               <button type="button" class="option" data-value="other-healthcare" data-qualify="low">
-                <span class="option-title">Other Healthcare Professional</span>
-                <span class="option-desc">Involved in healthcare but not directly in RCM</span>
+                <span class="option-title">أخصائي/ة صحي آخر | Other Healthcare Professional</span>
+                <span class="option-desc">مشارك في القطاع الصحي | Involved in healthcare sector</span>
               </button>
             </div>
           </fieldset>
 
-          <!-- Q2 -->
+          <!-- Q2 - Enhanced Organization Size with Saudi Context -->
           <fieldset class="question" data-question="2">
-            <legend class="question-title">How many healthcare providers does your organization have?</legend>
-            <p class="question-subtitle">This helps us understand the scale of your RCM challenges.</p>
+            <legend class="question-title">كم عدد مقدمي الرعاية الصحية في منظمتك؟ | How many healthcare providers does your organization have?</legend>
+            <p class="question-subtitle">يساعدنا هذا في فهم حجم تحديات إدارة الإيرادات | This helps us understand the scale of your RCM challenges.</p>
             <div class="options-grid">
+              <button type="button" class="option" data-value="mega-system" data-qualify="high">
+                <span class="option-title">500+ مقدم خدمة | 500+ Providers</span>
+                <span class="option-desc">نظام صحي كبير أو مجموعة مستشفيات | Large health system or hospital group</span>
+              </button>
               <button type="button" class="option" data-value="large" data-qualify="high">
-                <span class="option-title">100+ Providers</span>
-                <span class="option-desc">Large health system or multi-specialty group</span>
+                <span class="option-title">100-500 مقدم خدمة | 100-500 Providers</span>
+                <span class="option-desc">مستشفى كبير أو مجموعة تخصصات | Large hospital or multi-specialty group</span>
               </button>
               <button type="button" class="option" data-value="medium" data-qualify="high">
-                <span class="option-title">20–100 Providers</span>
-                <span class="option-desc">Mid-size practice or hospital</span>
+                <span class="option-title">20-100 مقدم خدمة | 20-100 Providers</span>
+                <span class="option-desc">مستشفى متوسط أو عيادة كبيرة | Mid-size hospital or large clinic</span>
               </button>
               <button type="button" class="option" data-value="small" data-qualify="medium">
-                <span class="option-title">5–20 Providers</span>
-                <span class="option-desc">Small to medium practice</span>
+                <span class="option-title">5-20 مقدم خدمة | 5-20 Providers</span>
+                <span class="option-desc">عيادة صغيرة إلى متوسطة | Small to medium practice</span>
               </button>
               <button type="button" class="option" data-value="very-small" data-qualify="low">
-                <span class="option-title">Less than 5 Providers</span>
-                <span class="option-desc">Small practice or solo practitioner</span>
+                <span class="option-title">أقل من 5 مقدمين | Less than 5 Providers</span>
+                <span class="option-desc">عيادة صغيرة أو طبيب منفرد | Small clinic or solo practitioner</span>
               </button>
             </div>
           </fieldset>
 
-          <!-- Q3 -->
+          <!-- Q3 - Enhanced Challenges for Saudi Healthcare -->
           <fieldset class="question" data-question="3">
-            <legend class="question-title">What's your biggest RCM challenge right now?</legend>
-            <p class="question-subtitle">Select the challenge that impacts your organization most.</p>
+            <legend class="question-title">ما هو أكبر تحدٍ في إدارة الإيرادات حالياً؟ | What's your biggest RCM challenge right now?</legend>
+            <p class="question-subtitle">اختر التحدي الذي يؤثر أكثر على منظمتك | Select the challenge that impacts your organization most.</p>
             <div class="options-grid">
-              <button type="button" class="option" data-value="staffing" data-qualify="high">
-                <span class="option-title">Staffing Shortages</span>
-                <span class="option-desc">Can't find or retain qualified RCM staff</span>
+              <button type="button" class="option" data-value="nphies-compliance" data-qualify="high">
+                <span class="option-title">امتثال نفيس والتأمين | NPHIES Compliance & Insurance</span>
+                <span class="option-desc">صعوبات في الامتثال لنظام نفيس ومطالبات التأمين | Challenges with NPHIES compliance and insurance claims</span>
               </button>
-              <button type="button" class="option" data-value="denials" data-qualify="high">
-                <span class="option-title">High Denial Rates</span>
-                <span class="option-desc">Too many claims denied or rejected</span>
+              <button type="button" class="option" data-value="staffing-shortage" data-qualify="high">
+                <span class="option-title">نقص الكوادر المتخصصة | Skilled Staff Shortage</span>
+                <span class="option-desc">صعوبة إيجاد والاحتفاظ بموظفين مؤهلين | Can't find or retain qualified RCM staff</span>
               </button>
-              <button type="button" class="option" data-value="manual-work" data-qualify="high">
-                <span class="option-title">Manual Processes</span>
-                <span class="option-desc">Too much manual data entry and follow-up</span>
+              <button type="button" class="option" data-value="manual-processes" data-qualify="high">
+                <span class="option-title">العمليات اليدوية | Manual Processes</span>
+                <span class="option-desc">كثرة الإدخال اليدوي والمتابعات | Too much manual data entry and follow-up</span>
+              </button>
+              <button type="button" class="option" data-value="denial-management" data-qualify="high">
+                <span class="option-title">إدارة الرفض والمراجعات | Denial Management</span>
+                <span class="option-desc">ارتفاع معدلات رفض المطالبات | High denial rates and claim rejections</span>
+              </button>
+              <button type="button" class="option" data-value="system-integration" data-qualify="medium">
+                <span class="option-title">تكامل الأنظمة | System Integration</span>
+                <span class="option-desc">صعوبة ربط الأنظمة المختلفة | Difficulty integrating different systems</span>
               </button>
               <button type="button" class="option" data-value="cash-flow" data-qualify="medium">
-                <span class="option-title">Cash Flow Issues</span>
-                <span class="option-desc">Slow collections and payment delays</span>
+                <span class="option-title">التدفق النقدي | Cash Flow Issues</span>
+                <span class="option-desc">بطء التحصيل وتأخير المدفوعات | Slow collections and payment delays</span>
               </button>
             </div>
           </fieldset>
 
-          <!-- Q4: SAR ranges -->
+          <!-- Q4: Enhanced SAR ranges with more realistic Saudi healthcare figures -->
           <fieldset class="question" data-question="4">
-            <legend class="question-title">Estimated monthly revenue lost due to RCM inefficiencies (SAR)</legend>
-            <p class="question-subtitle">Include denied claims, delayed payments, and staffing costs.</p>
+            <legend class="question-title">الخسائر الشهرية المقدرة بسبب عدم كفاءة إدارة الإيرادات (ريال سعودي) | Estimated monthly revenue lost due to RCM inefficiencies (SAR)</legend>
+            <p class="question-subtitle">تشمل المطالبات المرفوضة وتأخير المدفوعات وتكاليف الموظفين | Include denied claims, delayed payments, and staffing costs.</p>
             <div class="options-grid">
-              <button type="button" class="option" data-value="high-impact" data-qualify="high" data-sar="250000">
-                <span class="option-title">SAR 250,000+</span>
-                <span class="option-desc">Significant financial impact</span>
+              <button type="button" class="option" data-value="critical-impact" data-qualify="high" data-sar="1000000">
+                <span class="option-title">مليون ريال سعودي أو أكثر | SAR 1,000,000+</span>
+                <span class="option-desc">تأثير مالي حرج يتطلب تدخل فوري | Critical financial impact requiring immediate intervention</span>
               </button>
-              <button type="button" class="option" data-value="medium-impact" data-qualify="high" data-sar="100000">
-                <span class="option-title">SAR 100,000 – 250,000</span>
-                <span class="option-desc">Moderate but concerning impact</span>
+              <button type="button" class="option" data-value="high-impact" data-qualify="high" data-sar="500000">
+                <span class="option-title">500,000 - 1,000,000 ريال | SAR 500,000 - 1,000,000</span>
+                <span class="option-desc">تأثير مالي كبير ومقلق | Significant and concerning financial impact</span>
               </button>
-              <button type="button" class="option" data-value="low-impact" data-qualify="medium" data-sar="25000">
-                <span class="option-title">SAR 25,000 – 100,000</span>
-                <span class="option-desc">Noticeable impact</span>
+              <button type="button" class="option" data-value="medium-impact" data-qualify="high" data-sar="250000">
+                <span class="option-title">250,000 - 500,000 ريال | SAR 250,000 - 500,000</span>
+                <span class="option-desc">تأثير متوسط ولكن ملحوظ | Moderate but noticeable impact</span>
               </button>
-              <button type="button" class="option" data-value="minimal" data-qualify="low" data-sar="5000">
-                <span class="option-title">Less than SAR 25,000</span>
-                <span class="option-desc">Minimal financial impact</span>
+              <button type="button" class="option" data-value="low-impact" data-qualify="medium" data-sar="100000">
+                <span class="option-title">100,000 - 250,000 ريال | SAR 100,000 - 250,000</span>
+                <span class="option-desc">تأثير ملحوظ يستدعي التحسين | Noticeable impact requiring improvement</span>
+              </button>
+              <button type="button" class="option" data-value="minimal" data-qualify="low" data-sar="50000">
+                <span class="option-title">أقل من 100,000 ريال | Less than SAR 100,000</span>
+                <span class="option-desc">تأثير محدود ولكن قابل للتحسين | Limited impact but room for improvement</span>
               </button>
             </div>
           </fieldset>
 
-          <!-- Q5 -->
+          <!-- Q5 - Enhanced AI/Technology Adoption with Saudi Context -->
           <fieldset class="question" data-question="5">
-            <legend class="question-title">How open is your organization to adopting AI automation for RCM?</legend>
-            <p class="question-subtitle">This helps us understand readiness for new solutions.</p>
+            <legend class="question-title">مدى استعداد منظمتك لتبني الذكاء الاصطناعي في إدارة الإيرادات؟ | How ready is your organization to adopt AI automation for RCM?</legend>
+            <p class="question-subtitle">يساعدنا هذا في فهم مستوى الاستعداد للحلول الجديدة | This helps us understand readiness for new solutions.</p>
             <div class="options-grid">
+              <button type="button" class="option" data-value="ai-pioneer" data-qualify="high">
+                <span class="option-title">رائد في التقنية | Technology Pioneer</span>
+                <span class="option-desc">نطبق حلول الذكاء الاصطناعي بنشاط | Actively implementing AI solutions</span>
+              </button>
               <button type="button" class="option" data-value="very-open" data-qualify="high">
-                <span class="option-title">Very Open</span>
-                <span class="option-desc">Actively seeking AI/automation solutions</span>
+                <span class="option-title">منفتح جداً | Very Open</span>
+                <span class="option-desc">نسعى بنشاط لحلول الذكاء الاصطناعي | Actively seeking AI/automation solutions</span>
               </button>
-              <button type="button" class="option" data-value="open" data-qualify="high">
-                <span class="option-title">Open</span>
-                <span class="option-desc">Would consider proven AI solutions</span>
+              <button type="button" class="option" data-value="open-with-pilot" data-qualify="high">
+                <span class="option-title">منفتح مع التجريب | Open with Piloting</span>
+                <span class="option-desc">نفضل تجربة الحلول قبل التطبيق الكامل | Prefer to pilot solutions before full implementation</span>
               </button>
-              <button type="button" class="option" data-value="cautious" data-qualify="medium">
-                <span class="option-title">Cautious</span>
-                <span class="option-desc">Need to see strong evidence first</span>
+              <button type="button" class="option" data-value="cautious-proven" data-qualify="medium">
+                <span class="option-title">حذر ولكن مهتم | Cautious but Interested</span>
+                <span class="option-desc">نحتاج لأدلة قوية وحالات نجاح محلية | Need strong evidence and local success cases</span>
               </button>
-              <button type="button" class="option" data-value="resistant" data-qualify="low">
-                <span class="option-title">Resistant</span>
-                <span class="option-desc">Prefer traditional approaches</span>
+              <button type="button" class="option" data-value="traditional-focus" data-qualify="low">
+                <span class="option-title">تركيز تقليدي | Traditional Focus</span>
+                <span class="option-desc">نفضل الطرق التقليدية المثبتة | Prefer proven traditional approaches</span>
+              </button>
+              <button type="button" class="option" data-value="regulatory-concerns" data-qualify="medium">
+                <span class="option-title">قلق تنظيمي | Regulatory Concerns</span>
+                <span class="option-desc">مهتمون ولكن قلقون من الامتثال التنظيمي | Interested but concerned about regulatory compliance</span>
               </button>
             </div>
           </fieldset>
 
-          <!-- Q6 Contact -->
+          <!-- Q6 Contact - Enhanced with bilingual fields -->
           <fieldset class="question" data-question="6">
-            <legend class="question-title">Let's connect to discuss your RCM challenges</legend>
-            <p class="question-subtitle">We'd love to learn more about your specific situation and share relevant insights.</p>
+            <legend class="question-title">لنتواصل لمناقشة تحديات إدارة الإيرادات | Let's connect to discuss your RCM challenges</legend>
+            <p class="question-subtitle">نود التعرف أكثر على وضعكم المحدد ومشاركة الرؤى ذات الصلة | We'd love to learn more about your specific situation and share relevant insights.</p>
             <div class="form-grid">
               <label class="field">
-                <span>Full Name *</span>
-                <input id="fullName" name="fullName" class="input" type="text" autocomplete="name" required />
+                <span>الاسم الكامل * | Full Name *</span>
+                <input id="fullName" name="fullName" class="input" type="text" autocomplete="name" placeholder="مثال: د. أحمد محمد | Dr. Ahmed Mohammed" required />
               </label>
               <label class="field">
-                <span>Work Email *</span>
-                <input id="email" name="email" class="input" type="email" autocomplete="email" required />
+                <span>البريد الإلكتروني للعمل * | Work Email *</span>
+                <input id="email" name="email" class="input" type="email" autocomplete="email" placeholder="ahmed@hospital.com.sa" required />
               </label>
               <label class="field">
-                <span>Organization *</span>
-                <input id="organization" name="organization" class="input" type="text" required />
+                <span>المنظمة/المستشفى * | Organization/Hospital *</span>
+                <input id="organization" name="organization" class="input" type="text" placeholder="مستشفى الملك فيصل التخصصي | King Faisal Specialist Hospital" required />
               </label>
               <label class="field">
-                <span>Phone (KSA)</span>
+                <span>رقم الهاتف (السعودية) | Phone (KSA)</span>
                 <input id="phone" name="phone" class="input" type="tel" inputmode="tel" placeholder="05XXXXXXXX or +9665XXXXXXX" />
               </label>
-              <label class="field full">
-                <span>Location (City, Region)</span>
-                <input id="location" name="location" class="input" type="text" />
+              <label class="field">
+                <span>المدينة، المنطقة | Location (City, Region)</span>
+                <input id="location" name="location" class="input" type="text" placeholder="الرياض، المنطقة الوسطى | Riyadh, Central Region" />
+              </label>
+              <label class="field">
+                <span>المسمى الوظيفي | Job Title</span>
+                <input id="jobTitle" name="jobTitle" class="input" type="text" placeholder="مدير الإيرادات | Revenue Manager" />
               </label>
             </div>
           </fieldset>
