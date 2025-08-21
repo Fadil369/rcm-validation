@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCM Challenge Assessment | BrainSAIT Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ``` body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb8 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .survey-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .survey-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ea580c, #0ea5e9);
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ea580c;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-tagline {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ea580c, #0ea5e9);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 10%;
+        }
+
+        .question-container {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .question-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        .option-card.selected {
+            background: rgba(234, 88, 12, 0.2);
+            border-color: #ea580c;
+            box-shadow: 0 0 20px rgba(234, 88, 12, 0.3);
+        }
+
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #ea580c;
+            box-shadow: 0 0 20px rgba(234, 88, 12, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ea580c, #0ea5e9);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(234, 88, 12, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            display: none;
+            text-align: center;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .qualification-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .qualified {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
+
+        .not-qualified {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+
+        .cta-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .outreach-scripts {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .script-section {
+            margin-bottom: 2rem;
+        }
+
+        .script-title {
+            font-weight: 600;
+            color: #ea580c;
+            margin-bottom: 1rem;
+        }
+
+        .script-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #ea580c;
+            font-family: 'Courier New', monospace;
+            white-space: pre-line;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .copy-btn {
+            background: rgba(234, 88, 12, 0.2);
+            color: #ea580c;
+            border: 1px solid #ea580c;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: rgba(234, 88, 12, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .survey-card {
+                padding: 2rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+    ```
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="survey-card">
+            <div class="brand-header">
+                <div class="brand-logo">🧠 BrainSAIT</div>
+                <div class="brand-tagline">Healthcare AI Research Initiative</div>
+            </div>
+
+            ```
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <!-- Question 1: Role Qualification -->
+            <div class="question-container active" data-question="1">
+                <h2 class="question-title">What best describes your role in healthcare revenue cycle management?</h2>
+                <p class="question-subtitle">We're researching RCM challenges to develop better solutions.</p>
+
+                <div class="options-grid">
+                    <div class="option-card" data-value="rcm-director" data-qualify="high">
+                        <div class="option-title">RCM Director/Manager</div>
+                        <div class="option-description">Direct responsibility for revenue cycle operations</div>
+                    </div>
+                    <div class="option-card" data-value="practice-admin" data-qualify="high">
+                        <div class="option-title">Practice Administrator</div>
+                        <div class="option-description">Oversee clinic operations including billing</div>
+                    </div>
+                    <div class="option-card" data-value="billing-manager" data-qualify="medium">
+                        <div class="option-title">Billing Manager/Supervisor</div>
+                        <div class="option-description">Manage billing team and processes</div>
+                    </div>
+                    <div class="option-card" data-value="other-healthcare" data-qualify="low">
+                        <div class="option-title">Other Healthcare Professional</div>
+                        <div class="option-description">Involved in healthcare but not directly in RCM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2: Organization Size -->
+            <div class="question-container" data-question="2">
+                <h2 class="question-title">How many healthcare providers does your organization have?</h2>
+                <p class="question-subtitle">This helps us understand the scale of RCM challenges you face.</p>
+
+                <div class="options-grid">
+                    <div class="option-card" data-value="large" data-qualify="high">
+                        <div class="option-title">100+ Providers</div>
+                        <div class="option-description">Large health system or multi-specialty group</div>
+                    </div>
+                    <div class="option-card" data-value="medium" data-qualify="high">
+                        <div class="option-title">20-100 Providers</div>
+                        <div class="option-description">Mid-size practice or hospital</div>
+                    </div>
+                    <div class="option-card" data-value="small" data-qualify="medium">
+                        <div class="option-title">5-20 Providers</div>
+                        <div class="option-description">Small to medium practice</div>
+                    </div>
+                    <div class="option-card" data-value="very-small" data-qualify="low">
+                        <div class="option-title">Less than 5 Providers</div>
+                        <div class="option-description">Small practice or solo practitioner</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3: Current Challenges -->
+            <div class="question-container" data-question="3">
+                <h2 class="question-title">What's your biggest RCM challenge right now?</h2>
+                <p class="question-subtitle">Select the challenge that impacts your organization most.</p>
+
+                <div class="options-grid">
+                    <div class="option-card" data-value="staffing" data-qualify="high">
+                        <div class="option-title">Staffing Shortages</div>
+                        <div class="option-description">Can't find or retain qualified RCM staff</div>
+                    </div>
+                    <div class="option-card" data-value="denials" data-qualify="high">
+                        <div class="option-title">High Denial Rates</div>
+                        <div class="option-description">Too many claims denied or rejected</div>
+                    </div>
+                    <div class="option-card" data-value="manual-work" data-qualify="high">
+                        <div class="option-title">Manual Processes</div>
+                        <div class="option-description">Too much manual data entry and follow-up</div>
+                    </div>
+                    <div class="option-card" data-value="cash-flow" data-qualify="medium">
+                        <div class="option-title">Cash Flow Issues</div>
+                        <div class="option-description">Slow collections and payment delays</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4: Financial Impact -->
+            <div class="question-container" data-question="4">
+                <h2 class="question-title">How much revenue do you estimate you lose monthly due to RCM inefficiencies?
+                </h2>
+                <p class="question-subtitle">Include denied claims, delayed payments, and staffing costs.</p>
+
+                <div class="options-grid">
+                    <div class="option-card" data-value="high-impact" data-qualify="high">
+                        <div class="option-title">$50,000+ per month</div>
+                        <div class="option-description">Significant financial impact</div>
+                    </div>
+                    <div class="option-card" data-value="medium-impact" data-qualify="high">
+                        <div class="option-title">$10,000 - $50,000 per month</div>
+                        <div class="option-description">Moderate but concerning impact</div>
+                    </div>
+                    <div class="option-card" data-value="low-impact" data-qualify="medium">
+                        <div class="option-title">$1,000 - $10,000 per month</div>
+                        <div class="option-description">Manageable but noticeable impact</div>
+                    </div>
+                    <div class="option-card" data-value="minimal" data-qualify="low">
+                        <div class="option-title">Less than $1,000 per month</div>
+                        <div class="option-description">Minimal financial impact</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5: Technology Adoption -->
+            <div class="question-container" data-question="5">
+                <h2 class="question-title">How open is your organization to adopting AI automation for RCM?</h2>
+                <p class="question-subtitle">This helps us understand your readiness for new solutions.</p>
+
+                <div class="options-grid">
+                    <div class="option-card" data-value="very-open" data-qualify="high">
+                        <div class="option-title">Very Open</div>
+                        <div class="option-description">Actively seeking AI/automation solutions</div>
+                    </div>
+                    <div class="option-card" data-value="open" data-qualify="high">
+                        <div class="option-title">Open</div>
+                        <div class="option-description">Would consider proven AI solutions</div>
+                    </div>
+                    <div class="option-card" data-value="cautious" data-qualify="medium">
+                        <div class="option-title">Cautious</div>
+                        <div class="option-description">Need to see strong evidence first</div>
+                    </div>
+                    <div class="option-card" data-value="resistant" data-qualify="low">
+                        <div class="option-title">Resistant</div>
+                        <div class="option-description">Prefer traditional approaches</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6: Contact Information -->
+            <div class="question-container" data-question="6">
+                <h2 class="question-title">Let's connect to discuss your RCM challenges</h2>
+                <p class="question-subtitle">We'd love to learn more about your specific situation and share relevant
+                    insights.</p>
+
+                <input type="text" class="input-field" id="fullName" placeholder="Full Name *" required>
+                <input type="email" class="input-field" id="email" placeholder="Work Email *" required>
+                <input type="text" class="input-field" id="organization" placeholder="Organization Name *" required>
+                <input type="text" class="input-field" id="phone" placeholder="Phone Number (optional)">
+                <input type="text" class="input-field" id="location" placeholder="Location (City, State/Country)">
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+                <div id="qualificationResult"></div>
+                <div class="cta-section">
+                    <h3>Thank you for your responses!</h3>
+                    <p style="margin: 1rem 0;">Based on your answers, we'd love to continue the conversation.</p>
+
+                    <div class="button-group" style="justify-content: center; margin-top: 2rem;">
+                        <a href="https://calendly.com/your-calendly-link" target="_blank" class="btn btn-primary">
+                            📅 Book a 15-Minute Chat
+                        </a>
+                        <button class="btn btn-secondary" onclick="submitSurvey()">
+                            📧 Send My Responses
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="button-group" id="navigationButtons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" style="display: none;">
+                    ← Previous
+                </button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Outreach Scripts Section -->
+        <div class="outreach-scripts">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #ea580c;">📧 Outreach Scripts</h2>
+
+            <div class="script-section">
+                <div class="script-title">LinkedIn Message Script</div>
+                <div class="script-content">Hi [Name],
+                    ```
+
+                    I saw your profile and noticed you work in healthcare revenue cycle management at [Company].
+
+                    I’m conducting research on RCM challenges (staffing shortages, denial rates, manual processes) and
+                    would love your perspective as an expert in the field.
+
+                    Would you be open to a quick 2-minute survey that could help the industry find better solutions?
+
+                    [Survey Link]
+
+                    No sales pitch - just research to understand real challenges. I’d be happy to share insights from
+                    the study with you.
+
+                    Best regards,
+                    Dr. Mohamed El Fadil Abuagla
+                    BrainSAIT Healthcare AI Research</div>
+                <button class="copy-btn" onclick="copyToClipboard('linkedin-script')">Copy Script</button>
+            </div>
+
+            ```
+            <div class="script-section">
+                <div class="script-title">Email Outreach Script</div>
+                <div class="script-content">Subject: Quick RCM Research - Your Expert Perspective Needed
+                    ```
+
+                    Hi [Name],
+
+                    I hope this email finds you well. I’m Dr. Mohamed El Fadil Abuagla, currently researching revenue
+                    cycle management challenges in healthcare organizations.
+
+                    Given your role as [Title] at [Company], I’d greatly value your insights on current RCM pain points
+                    - particularly around staffing shortages, denial management, and process automation.
+
+                    Would you spare 2 minutes for a brief survey? It’s completely anonymous, and I’m happy to share the
+                    aggregated findings with you.
+
+                    [Survey Link]
+
+                    This isn’t a sales outreach - I’m genuinely researching to better understand industry challenges and
+                    potential solutions.
+
+                    If you’re interested in discussing RCM trends further, I’d be happy to schedule a brief call at your
+                    convenience.
+
+                    Thank you for considering this request.
+
+                    Best regards,
+
+                    Dr. Mohamed El Fadil Abuagla
+                    Founder, BrainSAIT
+                    Healthcare AI Research Initiative
+                    dr.mf.12298@gmail.com</div>
+                <button class="copy-btn" onclick="copyToClipboard('email-script')">Copy Script</button>
+            </div>
+
+            ```
+            <div class="script-section">
+                <div class="script-title">Follow-up Email Script</div>
+                <div class="script-content">Subject: Re: RCM Research Follow-up
+                    ```
+
+                    Hi [Name],
+
+                    Thank you for taking the time to complete our RCM survey. Your insights about [specific challenge
+                    they mentioned] are particularly valuable.
+
+                    Based on your responses, I believe you’d find our upcoming research findings very relevant,
+                    especially regarding [specific area of interest].
+
+                    Would you be open to a brief 15-minute conversation to dive deeper into your RCM challenges? I’m
+                    happy to share some preliminary insights from our research that might be immediately useful for your
+                    organization.
+
+                    [Calendly Link]
+
+                    No obligation - just a chance to exchange insights and learn from each other.
+
+                    Best regards,
+                    Dr. Mohamed El Fadil Abuagla
+                    BrainSAIT Healthcare AI Research</div>
+                <button class="copy-btn" onclick="copyToClipboard('followup-script')">Copy Script</button>
+            </div>
+        </div>
+    </div>
+
+    ```
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 6;
+        let answers = {};
+        let qualificationScore = 0;
+
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function selectOption(element, value, qualify) {
+            // Remove selection from siblings
+            const siblings = element.parentElement.children;
+            for (let sibling of siblings) {
+                sibling.classList.remove('selected');
+            }
+
+            // Select current option
+            element.classList.add('selected');
+
+            // Store answer
+            answers[`question${currentQuestion}`] = {
+                value: value,
+                qualify: qualify,
+                text: element.querySelector('.option-title').textContent
+            };
+
+            // Update qualification score
+            if (qualify === 'high') qualificationScore += 3;
+            else if (qualify === 'medium') qualificationScore += 2;
+            else if (qualify === 'low') qualificationScore += 1;
+
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion === 6) {
+                // Validate contact form
+                const name = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const organization = document.getElementById('organization').value;
+
+                if (!name || !email || !organization) {
+                    alert('Please fill in all required fields (Name, Email, Organization)');
+                    return;
+                }
+
+                answers.contact = {
+                    name: name,
+                    email: email,
+                    organization: organization,
+                    phone: document.getElementById('phone').value,
+                    location: document.getElementById('location').value
+                };
+
+                showResults();
+                return;
+            }
+
+            // Hide current question
+            document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+
+            // Show next question
+            currentQuestion++;
+            document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+
+            // Update progress
+            updateProgress();
+
+            // Update navigation
+            document.getElementById('prevBtn').style.display = currentQuestion > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('nextBtn').textContent = currentQuestion === 6 ? 'Complete Survey' : 'Next →';
+
+            // Add event listeners for contact form
+            if (currentQuestion === 6) {
+                const inputs = document.querySelectorAll('.input-field');
+                inputs.forEach(input => {
+                    input.addEventListener('input', validateContactForm);
+                });
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion <= 1) return;
+
+            // Hide current question
+            document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+
+            // Show previous question
+            currentQuestion--;
+            document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+
+            // Update progress
+            updateProgress();
+
+            // Update navigation
+            document.getElementById('prevBtn').style.display = currentQuestion > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('nextBtn').textContent = 'Next →';
+        }
+
+        function validateContactForm() {
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const organization = document.getElementById('organization').value;
+
+            document.getElementById('nextBtn').disabled = !(name && email && organization);
+        }
+
+        function showResults() {
+            // Hide questions and navigation
+            document.querySelectorAll('.question-container').forEach(q => q.style.display = 'none');
+            document.getElementById('navigationButtons').style.display = 'none';
+
+            // Show results
+            document.getElementById('resultsSection').classList.add('active');
+
+            // Update progress to 100%
+            document.getElementById('progressBar').style.width = '100%';
+
+            // Determine qualification
+            let qualificationText, qualificationClass, cta;
+
+            if (qualificationScore >= 12) {
+                qualificationText = "🎯 Highly Qualified - Perfect fit for our research!";
+                qualificationClass = "qualified";
+                cta = "You're exactly who we need to talk to. Your insights would be incredibly valuable for our research.";
+            } else if (qualificationScore >= 8) {
+                qualificationText = "✅ Qualified - Great candidate for our study";
+                qualificationClass = "qualified";
+                cta = "Your perspective would be very helpful for our research. We'd love to hear more about your challenges.";
+            } else {
+                qualificationText = "📋 Thank you for your interest";
+                qualificationClass = "not-qualified";
+                cta = "Thank you for taking the time to share your perspective. While you may not be our primary target for this specific research, we appreciate your input.";
+            }
+
+            document.getElementById('qualificationResult').innerHTML = `
+            <div class="qualification-badge ${qualificationClass}">${qualificationText}</div>
+            <p style="margin: 1rem 0;">${cta}</p>
+        `;
+        }
+
+        function submitSurvey() {
+            // Prepare email content
+            const emailBody = `
+```
+
+RCM Survey Response from ${ answers.contact.name }
+
+            Organization: ${ answers.contact.organization }
+            Email: ${ answers.contact.email }
+            Phone: ${ answers.contact.phone || ‘Not provided’ }
+            Location: ${ answers.contact.location || ‘Not provided’ }
+
+            Responses:
+
+            1. Role: ${ answers.question1?.text || ‘Not answered’ }
+            1. Organization Size: ${ answers.question2?.text || ‘Not answered’ }
+            1. Biggest Challenge: ${ answers.question3?.text || ‘Not answered’ }
+            1. Financial Impact: ${ answers.question4?.text || ‘Not answered’ }
+            1. Technology Adoption: ${ answers.question5?.text || ‘Not answered’ }
+
+Qualification Score: ${ qualificationScore }/15
+
+Generated on: ${ new Date().toLocaleString() }
+            `.trim();
+
+```
+            // Create mailto link
+            const mailtoLink = `mailto:dr.mf.12298@gmail.com?subject=RCM Survey Response - ${answers.contact.name}&body=${encodeURIComponent(emailBody)}`;
+
+            // Open email client
+            window.location.href = mailtoLink;
+
+            // Show confirmation
+            alert('Email client opened! Please send the email to complete your submission.');
+        }
+
+        function copyToClipboard(scriptType) {
+            const scriptElement = event.target.previousElementSibling;
+            const text = scriptElement.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                event.target.textContent = 'Copied!';
+                setTimeout(() => {
+                    event.target.textContent = 'Copy Script';
+                }, 2000);
+            });
+        }
+
+        // Add click listeners to option cards
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const value = this.dataset.value;
+                    const qualify = this.dataset.qualify;
+                    selectOption(this, value, qualify);
+                });
+            });
+
+            updateProgress();
+        });
+    </script>
+    ```
+
+</body>
+
+</html>

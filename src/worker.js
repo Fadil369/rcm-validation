@@ -7,6 +7,7 @@
  */
 
 import { Router } from 'itty-router';
+import { Ai } from '@cloudflare/ai';
 import { z } from 'zod';
 
 // Initialize router

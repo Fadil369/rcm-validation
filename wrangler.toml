@@ -4,10 +4,14 @@ compatibility_date = "2024-08-01"
 compatibility_flags = ["nodejs_compat"]
 
 [env.production]
-route = { pattern = "api.rcm-validation.brainsait.com/*", zone_name = "brainsait.com" }
+route = { pattern = "api.rcm-validation.brainsait.io/*", zone_name = "brainsait.io" }
 
 [env.staging]
-route = { pattern = "api-staging.rcm-validation.brainsait.com/*", zone_name = "brainsait.com" }
+route = { pattern = "api-staging.rcm-validation.brainsait.io/*", zone_name = "brainsait.io" }
+
+# Workers AI binding
+[ai]
+binding = "AI"
 
 # KV Namespaces for data storage
 [[kv_namespaces]]
